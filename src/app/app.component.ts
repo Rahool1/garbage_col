@@ -37,6 +37,8 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    this.router.navigate(['login']);
+    // this.router.navigate(['login']);
+    // this.router.navigate(['complaints']);
+    this.router.navigate(['new-complaint']);
   }
 }
