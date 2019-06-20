@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+    
+    user = "Menu"
+    constructor() {
+        this.user = JSON.parse(localStorage.getItem("user"));
+    }
 
+    ngOnInit() {}
 }

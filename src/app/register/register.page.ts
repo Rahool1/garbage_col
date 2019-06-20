@@ -8,6 +8,8 @@ import { AuthServiceService } from '../services/auth-service.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+  
+  message = "";
 
   constructor(private  authService: AuthServiceService,
               private  router: Router) { }
@@ -16,8 +18,13 @@ export class RegisterPage implements OnInit {
   }
 
   register(form) {
-    this.authService.register(form.value).subscribe((res) => {
-      this.router.navigateByUrl('home');
+    this.authService.register(form.value).subscribe((res: any) => {
+      if (res.status){
+        localStorage.setItem("user", JSON.stringify(res.user));
+        this.router.navigateByUrl('complaints');
+      }else{
+        this.message = res.validation;
+      }
     });
   }
 }

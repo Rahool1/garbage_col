@@ -17,11 +17,18 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
+      title: 'Complaints',
+      url: '/complaints',
+      icon: 'list'
+    },
+    {
+      title: 'Add Complaints',
+      url: '/new-complaint',
       icon: 'list'
     }
   ];
+
+  user = "";
 
   constructor(
     private platform: Platform,
@@ -30,6 +37,7 @@ export class AppComponent {
     private router: Router,
   ) {
     this.initializeApp();
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 
   initializeApp() {
@@ -37,8 +45,8 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    // this.router.navigate(['login']);
+    this.router.navigate(['login']);
     // this.router.navigate(['complaints']);
-    this.router.navigate(['new-complaint']);
+    // this.router.navigate(['new-complaint']);
   }
 }
