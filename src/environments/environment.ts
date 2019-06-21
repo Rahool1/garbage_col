@@ -3,9 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 const HOSTNAME = '192.168.43.35';
+// optiex.webfactional.com:1992
 export const environment = {
   production: false,
-  SERVER_ADDRESS: `http://${HOSTNAME}:1992`
+  // SERVER_ADDRESS: `http://${HOSTNAME}:1992`
+  SERVER_ADDRESS: `http://optiex.webfactional.com`
 };
 
 /*

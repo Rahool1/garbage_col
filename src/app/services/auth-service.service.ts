@@ -13,6 +13,7 @@ export class AuthServiceService {
 
 
   register(user) {
+    alert(`${environment.SERVER_ADDRESS}/user/register/`);
     return this.httpClient.post(`${environment.SERVER_ADDRESS}/user/register/`, user);
   }
 
