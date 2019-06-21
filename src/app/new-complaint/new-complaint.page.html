@@ -1,35 +1,45 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Register Complaint</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Register Complaint
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form #form="ngForm">
   <ion-list>
     <ion-item>
       <ion-label>Select Ward</ion-label>
       <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-        <ion-select-option value="brown">Ward 1</ion-select-option>
-        <ion-select-option value="blonde">Ward 2</ion-select-option>
-        <ion-select-option value="black">Waed 3</ion-select-option>
-        <ion-select-option value="red">Waed 4</ion-select-option>
+        <ion-select-option name="ward_id" *ngFor="let ward of wards" value="ward.id">{{ward.name}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
+        <ion-label position="floating">Title</ion-label>
+        <ion-input type="text" name="title"></ion-input>
+      </ion-item>
+    <ion-item>
       <ion-label position="floating">Address</ion-label>
-      <ion-textarea></ion-textarea>
+      <ion-textarea name="address"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Description</ion-label>
-      <ion-textarea></ion-textarea>
+      <ion-textarea name="content"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Phone Number</ion-label>
-      <ion-input type="number" value="333"></ion-input>
+      <ion-label position="floating">Mobile Number</ion-label>
+      <ion-input type="text" name="mobile_no" pattern="^(\+91[\-\s]?)?[0]?[1789]\d{9}$"></ion-input>
     </ion-item>
   </ion-list>
-    <ion-img src="assets/img/200.png" class="image"></ion-img>
-  <ion-button color="primary">Take Photo</ion-button>
-  <ion-button color="medium">Complaint</ion-button>
+  <div padding>
+      <ion-img src="assets/img/200.png" class="image"></ion-img>
+      <ion-button size="large" (click)="capturePhoto(1)" expand="block">Select Photo</ion-button>
+      <ion-button size="large" [disabled]="form.invalid" expand="block" (click)="registerEnquiry(form)">Submit</ion-button>
+      <div text-center class="error-alert">{{message}}</div>
+    </div>
+  </form>
 </ion-content>
-

@@ -1,43 +1,24 @@
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NetworkService {
 
-  SERVER_ADDRESS:  string  =  'http://localhost:3000';
-  serviceSubject  =  new  BehaviorSubject(false);
+  constructor(private httpClient: HttpClient) { }
 
-  constructor(private  httpClient: HttpClient) { }
-
-
-  complaint(complaint): Observable<any> {
-    console.log(complaint);
-    return this.httpClient.post(`${this.SERVER_ADDRESS}/complaint`, complaint).pipe(
-      tap(async (res: any ) => {
-        this.serviceSubject.next(true);
-      })
-
-    );
+  complaint(complaint) {
+    return this.httpClient.post(`${environment.SERVER_ADDRESS}/complaint`, complaint)
   }
 
-  getComplaints(): Observable<any> {
-    return this.httpClient.get(`${this.SERVER_ADDRESS}/complaints`).pipe(
-      tap(async (res: any ) => {
-        this.serviceSubject.next(true);
-      })
-    );
+  getComplaints(data) {
+    return this.httpClient.post(`${environment.SERVER_ADDRESS}/user/enquires/`, data)
   }
 
-  getWards(): Observable<any> {
-    return this.httpClient.get(`${this.SERVER_ADDRESS}/wards`).pipe(
-      tap(async (res: any ) => {
-        this.serviceSubject.next(true);
-      })
-    );
+  getWards() {
+    return this.httpClient.get(`${environment.SERVER_ADDRESS}/get/active/wards/`)
   }
 
 }

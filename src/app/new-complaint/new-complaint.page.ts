@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NetworkService } from '../services/network.service';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-new-complaint',
@@ -7,9 +9,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewComplaintPage implements OnInit {
 
-  constructor() { }
+  wards = [];
+  fileToUpload: File = null;
+
+  constructor(
+    private networkService: NetworkService,
+    private camera: Camera
+  ) { }
 
   ngOnInit() {
+    this.getWards();
+  }
+
+  getWards() {
+    this.networkService.getWards()
+      .subscribe((wards => {
+        this.wards = wards['data'];
+      }))
+  }
+  registerEnquiry(enquiry) {
+    console.log(enquiry)
+  }
+
+  capturePhoto(sourceType: number) {
+    const options: CameraOptions = {
+      quality: 50,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true,
+      sourceType:sourceType,
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      console.log(base64Image)
+    }, (err) => {
+      console.log(err)
+      // Handle error
+    });
   }
 
 }
