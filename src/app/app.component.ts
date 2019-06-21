@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
+import { AuthServiceService } from './services/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,6 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
     {
       title: 'Complaints',
       url: '/complaints',
@@ -35,6 +31,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
+    private authService: AuthServiceService,
+    public menuCtrl: MenuController
   ) {
     this.initializeApp();
     this.user = JSON.parse(localStorage.getItem("user"));
@@ -48,5 +46,15 @@ export class AppComponent {
     this.router.navigate(['login']);
     // this.router.navigate(['complaints']);
     // this.router.navigate(['new-complaint']);
+  }
+  logoutClicked() {
+    this.authService.logout()
+      .subscribe((res: Response) => {
+        if (res.status) {
+          this.menuCtrl.toggle();
+          localStorage.removeItem("user");
+          this.router.navigate(['login']);
+        }
+      })
   }
 }

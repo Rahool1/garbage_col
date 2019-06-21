@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   }
 
   is_user_login() {
-    this.authService.is_user_login().subscribe((res) => {
+    this.authService.is_user_login().subscribe((res: any) => {
       if (res.status){
         localStorage.setItem("user", JSON.stringify(res.user));
         this.router.navigateByUrl('complaints');
@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
   }
 
   login(form) {
-    this.authService.login(form.value).subscribe((res) => {
+    this.authService.login(form.value).subscribe((res: any) => {
       if (res.status){
         localStorage.setItem("user", JSON.stringify(res.user));
         this.router.navigateByUrl('complaints');

@@ -2,8 +2,10 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const HOSTNAME = '192.168.43.35';
 export const environment = {
-  production: false
+  production: false,
+  SERVER_ADDRESS: `http://${HOSTNAME}:1992`
 };
 
 /*
