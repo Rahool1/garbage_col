@@ -36,8 +36,9 @@
     </ion-item>
   </ion-list>
   <div padding>
+      <ion-input type="text" name="image" hidden></ion-input>
       <ion-img src="assets/img/200.png" class="image"></ion-img>
-      <ion-button size="large" (click)="capturePhoto(1)" expand="block">Select Photo</ion-button>
+      <ion-button size="large" (click)="capturePhoto(form)" expand="block">Select Photo</ion-button>
       <ion-button size="large" [disabled]="form.invalid" expand="block" (click)="registerEnquiry(form)">Submit</ion-button>
       <div text-center class="error-alert">{{message}}</div>
     </div>

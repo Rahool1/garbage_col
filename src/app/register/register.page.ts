@@ -19,6 +19,7 @@ export class RegisterPage implements OnInit {
 
   register(form) {
     this.authService.register(form.value).subscribe((res: any) => {
+      alert(JSON.stringify(res));
       if (res.status){
         localStorage.setItem("user", JSON.stringify(res.user));
         this.router.navigateByUrl('complaints');
