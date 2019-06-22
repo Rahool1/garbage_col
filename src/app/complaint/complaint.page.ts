@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NetworkService } from '../services/network.service';
+
 
 @Component({
   selector: 'app-complaint',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComplaintPage implements OnInit {
 
-  constructor() { }
+  complaint;
+
+  constructor(
+    private networkService: NetworkService
+  ) {
+    this.complaint = this.networkService.vComplaint;
+  }
 
   ngOnInit() {
   }

@@ -8,12 +8,11 @@ import { environment } from './../../environments/environment';
 export class AuthServiceService {
 
   constructor(
-    private  httpClient: HttpClient
-    ) { }
+    private httpClient: HttpClient
+  ) { }
 
 
   register(user) {
-    alert(`${environment.SERVER_ADDRESS}/user/register/`);
     return this.httpClient.post(`${environment.SERVER_ADDRESS}/user/register/`, user);
   }
 
@@ -24,7 +23,7 @@ export class AuthServiceService {
   login(user) {
     return this.httpClient.post(`${environment.SERVER_ADDRESS}/user/login/`, user);
   }
-  
+
   logout() {
     return this.httpClient.get(`${environment.SERVER_ADDRESS}/user/logout/`);
   }

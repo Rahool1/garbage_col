@@ -7,10 +7,11 @@ import { environment } from './../../environments/environment';
 })
 export class NetworkService {
 
+  vComplaint = {};
   constructor(private httpClient: HttpClient) { }
 
-  complaint(complaint) {
-    return this.httpClient.post(`${environment.SERVER_ADDRESS}/complaint`, complaint)
+  registerComplaint(complaint) {
+    return this.httpClient.post(`${environment.SERVER_ADDRESS}/create/user/enquiry/`, complaint)
   }
 
   getComplaints(data) {

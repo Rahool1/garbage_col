@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../services/auth-service.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +10,28 @@ import { AuthServiceService } from '../services/auth-service.service';
 })
 export class LoginPage implements OnInit {
 
-  message = "";
-
-  constructor(private authService: AuthServiceService,
-              private router: Router) { }
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router,
+    public alertController: AlertController
+  ) { }
 
   ngOnInit() {
     this.is_user_login();
   }
 
+  async presentAlert(msg) {
+    const alert = await this.alertController.create({
+      header: 'Validation Message',
+      message: msg,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
   is_user_login() {
     this.authService.is_user_login().subscribe((res: any) => {
-      if (res.status){
+      if (res.status) {
         localStorage.setItem("user", JSON.stringify(res.user));
         this.router.navigateByUrl('complaints');
       }
@@ -29,11 +40,11 @@ export class LoginPage implements OnInit {
 
   login(form) {
     this.authService.login(form.value).subscribe((res: any) => {
-      if (res.status){
+      if (res.status) {
         localStorage.setItem("user", JSON.stringify(res.user));
         this.router.navigateByUrl('complaints');
-      }else{
-        this.message = res.validation;
+      } else {
+        this.presentAlert(res.validation);
       }
     });
   }

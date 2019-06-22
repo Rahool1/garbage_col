@@ -34,8 +34,8 @@ export class AppComponent {
     private authService: AuthServiceService,
     public menuCtrl: MenuController
   ) {
-    this.initializeApp();
     this.user = JSON.parse(localStorage.getItem("user"));
+    this.initializeApp();
   }
 
   initializeApp() {
