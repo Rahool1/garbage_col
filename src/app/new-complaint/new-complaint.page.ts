@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NetworkService } from '../services/network.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AlertController } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-new-complaint',
@@ -16,7 +17,8 @@ export class NewComplaintPage implements OnInit {
   constructor(
     private networkService: NetworkService,
     private camera: Camera,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private geolocation: Geolocation
   ) { }
 
   ngOnInit() {
@@ -38,9 +40,17 @@ export class NewComplaintPage implements OnInit {
         this.wards = wards['data'];
       }))
   }
+
+  getGeolocationPoints(enquiry){
+    this.geolocation.getCurrentPosition().then((resp) => {
+      enquiry.value.lat = resp.coords.latitude;
+      enquiry.value.lang = resp.coords.longitude;
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
   registerEnquiry(enquiry) {
-    enquiry.value.lat = 0;
-    enquiry.value.lang = 0;
+    this.getGeolocationPoints(enquiry);
     this.networkService.registerComplaint(enquiry.value)
       .subscribe((res: any) => {
         if (res.status){

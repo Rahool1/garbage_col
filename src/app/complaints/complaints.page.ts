@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ComplaintsPage implements OnInit {
   complaints = []
-  selectedDate: String = new Date().toISOString();
+  selectedDate = new Date().toISOString();
   constructor(
     private router: Router,
     private networkService: NetworkService

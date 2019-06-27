@@ -24,7 +24,7 @@ export class AppComponent {
     }
   ];
 
-  user = "";
+  user = {first_name:"", last_name:""};
 
   constructor(
     private platform: Platform,
@@ -34,11 +34,11 @@ export class AppComponent {
     private authService: AuthServiceService,
     public menuCtrl: MenuController
   ) {
-    this.user = JSON.parse(localStorage.getItem("user"));
     this.initializeApp();
   }
-
+  
   initializeApp() {
+    this.user = JSON.parse(localStorage.getItem("user"));
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
