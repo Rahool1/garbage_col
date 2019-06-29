@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -10,7 +10,7 @@ import { AuthServiceService } from './services/auth-service.service';
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Complaints',
@@ -36,9 +36,12 @@ export class AppComponent {
   ) {
     this.initializeApp();
   }
+
+  ngOnInit(){
+    this.user = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")): this.user;
+  }
   
   initializeApp() {
-    this.user = JSON.parse(localStorage.getItem("user"));
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();

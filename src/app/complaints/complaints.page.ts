@@ -33,7 +33,7 @@ export class ComplaintsPage implements OnInit {
       }))
   }
   viewComplaint(complaint) {
-    complaint.location_pic = environment.SERVER_ADDRESS+'/'+complaint.location_pic;
+    complaint['location_picture'] = environment.SERVER_ADDRESS+'/'+complaint.location_pic;
     this.networkService.vComplaint = complaint;
     this.router.navigateByUrl('complaint');
   }

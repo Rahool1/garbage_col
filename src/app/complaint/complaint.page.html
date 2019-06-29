@@ -36,7 +36,11 @@
       <ion-input>{{complaint.status}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-img expand="block" [src]="complaint.location_pic"></ion-img>
+      <ion-img expand="block" [src]="complaint.location_picture"></ion-img>
+    </ion-item>
+    <br>
+    <ion-item>
+      <div style="height: 400px;width: 100%" id="map_canvas"> </div>
     </ion-item>
     <div padding>
       <ion-button size="large" expand="block">Change Status</ion-button>
