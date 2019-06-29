@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpAuthInterceptor } from './services/http.interceptor';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
 
@@ -29,7 +30,8 @@ import { HttpAuthInterceptor } from './services/http.interceptor';
     SplashScreen,
     Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true },
+    Geolocation
   ],
   bootstrap: [AppComponent]
 })

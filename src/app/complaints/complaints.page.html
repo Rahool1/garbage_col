@@ -10,24 +10,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="new-complaint" *ngFor="let complaint of complaints">
-    <ion-card-header>
-      <ion-card-subtitle>
-        {{complaint.user.first_name}} {{complaint.user.mobile_no}}
-      </ion-card-subtitle>
-      <ion-card-title>
-        {{complaint.title}}
-      </ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      {{complaint.content}}
-    </ion-card-content>
-    <ion-item>
-      <ion-icon name="pin" slot="start"></ion-icon>
-      <ion-label>{{complaint.ward.name}}, {{complaint.ward.city.name}}</ion-label>
-      <ion-button fill="outline" slot="end" (click)="viewComplaint()">View</ion-button>
-    </ion-item>
-  </ion-card>
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime display-format="MMM DD, YYYY" (ngModelChange)="onDateChange()" [(ngModel)]="selectedDate"></ion-datetime>
+  </ion-item>
+  <ion-item *ngIf="complaints.length < 1">
+    <ion-label>No records found</ion-label>
+  </ion-item>
+  <div *ngIf="complaints.length > 0">
+    <ion-card class="new-complaint" *ngFor="let complaint of complaints">
+      <ion-card-header>
+        <ion-card-subtitle>
+          {{complaint.user.first_name}} {{complaint.user.mobile_no}}
+        </ion-card-subtitle>
+        <ion-card-title>
+          {{complaint.title}}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{complaint.content}}
+      </ion-card-content>
+      <ion-item>
+        <ion-icon name="pin" slot="start"></ion-icon>
+        <ion-label>{{complaint.ward.name}}, {{complaint.ward.city.name}}</ion-label>
+        <ion-button fill="outline" slot="end" (click)="viewComplaint(complaint)">View</ion-button>
+      </ion-item>
+    </ion-card>
+  </div>
 
 </ion-content>
