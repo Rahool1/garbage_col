@@ -3,6 +3,7 @@ import { NetworkService } from '../services/network.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AlertController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-complaint',
@@ -18,7 +19,8 @@ export class NewComplaintPage implements OnInit {
     private networkService: NetworkService,
     private camera: Camera,
     public alertController: AlertController,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,7 +31,13 @@ export class NewComplaintPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Enquiry',
       message: msg,
-      buttons: ['OK']
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          alert.dismiss().then(() => { this.router.navigateByUrl('complaints'); });
+          return false;
+        }
+      }]
     });
     await alert.present();
   }

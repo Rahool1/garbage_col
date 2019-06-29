@@ -13,7 +13,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpAuthInterceptor } from './services/http.interceptor';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  Marker,
+  BaseArrayClass
+} from '@ionic-native/google-maps';
 
 
 @NgModule({
@@ -31,7 +37,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true },
-    Geolocation
+    Geolocation,
+    GoogleMaps
   ],
   bootstrap: [AppComponent]
 })
