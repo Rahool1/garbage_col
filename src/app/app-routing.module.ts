@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'complaints', loadChildren: './complaints/complaints.module#ComplaintsPageModule' },
   { path: 'complaint', loadChildren: './complaint/complaint.module#ComplaintPageModule' },
-  { path: 'new-complaint', loadChildren: './new-complaint/new-complaint.module#NewComplaintPageModule' }
+  { path: 'new-complaint', loadChildren: './new-complaint/new-complaint.module#NewComplaintPageModule' },
+  { path: 'resolve-complaint', loadChildren: './resolve-complaint/resolve-complaint.module#ResolveComplaintPageModule' }
 ];
 
 @NgModule({

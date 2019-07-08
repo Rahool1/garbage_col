@@ -1,0 +1,28 @@
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>
+			{{complaint.title}}
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<form #form="ngForm">
+		<ion-list>
+			<ion-item>
+				<ion-label position="floating">Commnet</ion-label>
+				<ion-textarea ngModel name="comment" required></ion-textarea>
+			</ion-item>
+
+		</ion-list>
+		<div padding>
+			<ion-img expand="block" [src]="this.base64Image"></ion-img>
+			<ion-button size="large" (click)="capturePhoto(form)" expand="block">Select Photo</ion-button>
+			<ion-button size="large" [disabled]="form.invalid" expand="block" (click)="changeStatus(form)">Complete</ion-button>
+			<ion-button size="large" [disabled]="form.invalid" expand="block" (click)="cancel(form)">Cancel</ion-button>
+		</div>
+	</form>
+</ion-content>

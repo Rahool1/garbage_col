@@ -43,7 +43,8 @@
       <div style="height: 400px;width: 100%" id="map_canvas"> </div>
     </ion-item>
     <div padding>
-      <ion-button size="large" expand="block">Change Status</ion-button>
+      <ion-button size="large" expand="block" (click)="inprogress()" *ngIf="user.group == 'ADMIN' || user.group == 'SUPERVISOR'">In Progress</ion-button>
+      <ion-button size="large" expand="block" (click)="gotoResolve()" *ngIf="user.group == 'ADMIN' || user.group == 'SUPERVISOR'">Change Status</ion-button>
     </div>
   </ion-list>
 </ion-content>
