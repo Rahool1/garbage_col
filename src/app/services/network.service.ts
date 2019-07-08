@@ -21,5 +21,13 @@ export class NetworkService {
   getWards() {
     return this.httpClient.get(`${environment.SERVER_ADDRESS}/get/active/wards/`)
   }
+  
+  getOTP(data) {
+    return this.httpClient.post(`${environment.SERVER_ADDRESS}/user/send/otp/`, data)
+  }
+  
+  changePassword(data) {
+    return this.httpClient.post(`${environment.SERVER_ADDRESS}/user/forgot/password/`, data)
+  }
 
 }
