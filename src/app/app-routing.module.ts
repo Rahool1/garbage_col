@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'complaints', loadChildren: './complaints/complaints.module#ComplaintsPageModule' },
   { path: 'complaint', loadChildren: './complaint/complaint.module#ComplaintPageModule' },
   { path: 'new-complaint', loadChildren: './new-complaint/new-complaint.module#NewComplaintPageModule' },
+  { path: 'resolve-complaint', loadChildren: './resolve-complaint/resolve-complaint.module#ResolveComplaintPageModule' },
   { path: 'forgot-password', loadChildren: './forgot-password/forgot-password.module#ForgotPasswordModule' }
 ];
 
