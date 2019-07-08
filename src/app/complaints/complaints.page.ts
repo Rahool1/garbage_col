@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class ComplaintsPage implements OnInit {
   complaints = []
   selectedDate = new Date().toISOString();
+  user;
   constructor(
     private router: Router,
     private networkService: NetworkService
@@ -18,6 +19,7 @@ export class ComplaintsPage implements OnInit {
 
   ngOnInit() {
     this.getComplaints();
+    this.user = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")): this.user;
   }
 
   onDateChange(){
@@ -26,7 +28,10 @@ export class ComplaintsPage implements OnInit {
 
 
   getComplaints() {
-    var data = { date: (new Date(this.selectedDate)).getTime() }
+    var data = { 
+      date: (new Date(this.selectedDate)).getTime(),
+      group: this.user.group
+    }
     this.networkService.getComplaints(data)
       .subscribe((complaints => {
         this.complaints = complaints['data'];

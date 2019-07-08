@@ -2,7 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const HOSTNAME = '192.168.1.104';
+const HOSTNAME = '192.168.43.35';
 // optiex.webfactional.com:1992
 export const environment = {
   production: false,

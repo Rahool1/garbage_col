@@ -33,5 +33,13 @@ export class NetworkService {
   changeComplaintStatus(complaint) {
     return this.httpClient.post(`${environment.SERVER_ADDRESS}/change/enquiry/status/`, complaint);
   }
+  
+  getOTP(data) {
+    return this.httpClient.post(`${environment.SERVER_ADDRESS}/user/send/otp/`, data)
+  }
+  
+  changePassword(data) {
+    return this.httpClient.post(`${environment.SERVER_ADDRESS}/user/forgot/password/`, data)
+  }
 
 }
