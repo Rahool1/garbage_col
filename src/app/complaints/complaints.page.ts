@@ -20,22 +20,22 @@ export class ComplaintsPage implements OnInit {
   ngOnInit() {
     this.getComplaints();
   }
-  
+
   onDateChange(){
     this.getComplaints();
   }
-  
-  
+
+
   getComplaints() {
     this.user = JSON.parse(localStorage.getItem("user"));
-    var data = { 
+    var data = {
       date: (new Date(this.selectedDate)).getTime(),
       group: this.user.group
-    }
+    };
     this.networkService.getComplaints(data)
-      .subscribe((complaints => {
-        this.complaints = complaints['data'];
-      }))
+    .subscribe((complaints) => {
+      this.complaints = complaints['data'];
+    });
   }
   viewComplaint(complaint) {
     complaint['location_picture'] = environment.SERVER_ADDRESS+'/'+complaint.location_pic;
