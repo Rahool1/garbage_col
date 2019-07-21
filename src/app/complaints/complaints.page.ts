@@ -20,7 +20,6 @@ export class ComplaintsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")): this.user;
     this.getComplaints();
   }
 
@@ -30,6 +29,7 @@ export class ComplaintsPage implements OnInit {
 
 
   getComplaints() {
+    this.user = JSON.parse(localStorage.getItem("user"));
     var data = {
       date: (new Date(this.selectedDate)).getTime(),
       group: this.user.group
