@@ -78,7 +78,6 @@ export class NewComplaintPage implements OnInit {
       });
     }
     registerEnquiry(enquiry) {
-      enquiry.value.location_pic = 'data:image/jpeg;base64,asdasdasddas djasndnasdn3213i123n12i3ni21n3';
       this.getGeolocationPoints(enquiry);
     }
 

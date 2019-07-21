@@ -19,15 +19,15 @@ export class ComplaintsPage implements OnInit {
 
   ngOnInit() {
     this.getComplaints();
-    this.user = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")): this.user;
   }
-
+  
   onDateChange(){
     this.getComplaints();
   }
-
-
+  
+  
   getComplaints() {
+    this.user = JSON.parse(localStorage.getItem("user"));
     var data = { 
       date: (new Date(this.selectedDate)).getTime(),
       group: this.user.group

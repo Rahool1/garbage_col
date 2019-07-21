@@ -42,7 +42,6 @@ export class ResolveComplaintPage implements OnInit {
     }
 
     changeStatus(enquiry) {
-      enquiry.value.comment_pic = 'data:image/jpeg;base64,asdasdasddas djasndnasdn3213i123n12i3ni21n3';
       enquiry.value.id = this.complaint.id;
       enquiry.value.status_id = 1;
 
