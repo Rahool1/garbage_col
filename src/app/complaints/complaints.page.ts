@@ -18,8 +18,8 @@ export class ComplaintsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getComplaints();
     this.user = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")): this.user;
+    this.getComplaints();
   }
 
   onDateChange(){
@@ -28,14 +28,14 @@ export class ComplaintsPage implements OnInit {
 
 
   getComplaints() {
-    var data = { 
+    var data = {
       date: (new Date(this.selectedDate)).getTime(),
       group: this.user.group
-    }
+    };
     this.networkService.getComplaints(data)
-      .subscribe((complaints => {
-        this.complaints = complaints['data'];
-      }))
+    .subscribe((complaints) => {
+      this.complaints = complaints['data'];
+    });
   }
   viewComplaint(complaint) {
     complaint['location_picture'] = environment.SERVER_ADDRESS+'/'+complaint.location_pic;
