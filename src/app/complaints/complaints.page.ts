@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NetworkService } from '../services/network.service';
 import { environment } from 'src/environments/environment';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-complaints',
@@ -14,7 +15,8 @@ export class ComplaintsPage implements OnInit {
   user;
   constructor(
     private router: Router,
-    private networkService: NetworkService
+    private networkService: NetworkService,
+    public actionSheetController: ActionSheetController
   ) { }
 
   ngOnInit() {
@@ -43,6 +45,32 @@ export class ComplaintsPage implements OnInit {
     this.router.navigateByUrl('complaint');
   }
 
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Actions',
+      buttons: [{
+        text: 'Inprogress',
+        // icon: 'trash',
+        handler: () => {
+          console.log('Inprogress clicked');
+        }
+      }, {
+        text: 'Complete',
+        // icon: 'share',
+        handler: () => {
+          console.log('Complete clicked');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+  }
 
 
 }
