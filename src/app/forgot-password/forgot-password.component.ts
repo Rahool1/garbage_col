@@ -41,7 +41,7 @@ export class ForgotPasswordComponent implements OnInit {
       .subscribe(((res: any) => {
         if (res.status) {
           this.presentAlert(res.validation);
-          this.router.navigateByUrl('login');
+          this.router.navigate(['login'], {skipLocationChange: true});
         } else {
           this.presentAlert(res.validation);
         }

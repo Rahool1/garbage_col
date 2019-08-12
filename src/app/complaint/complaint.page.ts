@@ -53,7 +53,7 @@ export class ComplaintPage implements OnInit {
     }
 
     gotoResolve() {
-      this.router.navigateByUrl('resolve-complaint');
+      this.router.navigate(['resolve-complaint']);
     }
 
     inprogress() {
@@ -76,7 +76,9 @@ export class ComplaintPage implements OnInit {
         buttons: [{
           text: 'OK',
           handler: () => {
-            alert.dismiss().then(() => { this.router.navigateByUrl('complaints'); });
+            alert.dismiss().then(() => {
+              this.router.navigate(['complaints'], {skipLocationChange: true});
+            });
             return false;
           }
         }]

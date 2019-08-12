@@ -9,7 +9,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  
+
   message = "";
 
   constructor(
@@ -34,7 +34,7 @@ export class RegisterPage implements OnInit {
     this.authService.register(form.value).subscribe((res: any) => {
       if (res.status){
         localStorage.setItem("user", JSON.stringify(res.user));
-        this.router.navigateByUrl('complaints');
+        this.router.navigate(['complaints'], {skipLocationChange: true});
       }else{
         this.presentAlert(res.validation);
       }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NetworkService } from '../services/network.service';
 import { environment } from 'src/environments/environment';
 import { ActionSheetController } from '@ionic/angular';
@@ -13,26 +13,33 @@ export class ComplaintsPage implements OnInit {
   complaints = []
   selectedDate = new Date().toISOString();
   user;
+  id;
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private networkService: NetworkService,
     public actionSheetController: ActionSheetController
-  ) { }
+  ) {
+    this.route.queryParams.subscribe(params => {
+      if (params && params.status) {
+        console.log(params);
+        this.id = params.status;
+        this.getComplaints(params.status);
+      }
+    });
+  }
 
   ngOnInit() {
-    this.getComplaints();
-  }
-
-  onDateChange(){
-    this.getComplaints();
+    this.getComplaints('0');
   }
 
 
-  getComplaints() {
+  getComplaints(status) {
     this.user = JSON.parse(localStorage.getItem("user"));
     var data = {
-      date: (new Date(this.selectedDate)).getTime(),
-      group: this.user.group
+      // date: (new Date(this.selectedDate)).getTime(),
+      group: this.user.group,
+      status: Number(status)
     };
     this.networkService.getComplaints(data)
     .subscribe((complaints) => {
@@ -42,7 +49,7 @@ export class ComplaintsPage implements OnInit {
   viewComplaint(complaint) {
     complaint['location_picture'] = environment.SERVER_ADDRESS+'/'+complaint.location_pic;
     this.networkService.vComplaint = complaint;
-    this.router.navigateByUrl('complaint');
+    this.router.navigate(['complaint'], {skipLocationChange: true});
   }
 
   async presentActionSheet() {
@@ -72,5 +79,14 @@ export class ComplaintsPage implements OnInit {
     await actionSheet.present();
   }
 
+  refresh() {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        status: this.id
+      }
+    };
+    this.router.navigate(['complaints'], navigationExtras);
+    // this.getComplaints(0);
+  }
 
 }

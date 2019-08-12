@@ -60,7 +60,9 @@ export class ResolveComplaintPage implements OnInit {
         buttons: [{
           text: 'OK',
           handler: () => {
-            alert.dismiss().then(() => { this.router.navigateByUrl('complaints'); });
+            alert.dismiss().then(() => {
+              this.router.navigate(['complaints'], {skipLocationChange: true});
+            });
             return false;
           }
         }]

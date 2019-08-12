@@ -6,18 +6,14 @@
     <ion-title>
       Complaints
     </ion-title>
-    <ion-buttons slot="end">
-      <ion-icon (click)="presentActionSheet()" name="search"></ion-icon>
+    <ion-buttons (click)="refresh()" slot="end">
+      <ion-icon style="font-size: 1.5em;" name="refresh"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label>Date</ion-label>
-    <ion-datetime display-format="MMM DD, YYYY" (ngModelChange)="onDateChange()" [(ngModel)]="selectedDate"></ion-datetime>
-  </ion-item>
-  <ion-item *ngIf="complaints.length < 1">
+  <ion-item *ngIf="complaints?.length < 1">
     <ion-label>No records found</ion-label>
   </ion-item>
   <div *ngIf="complaints.length > 0">
@@ -33,6 +29,8 @@
 
       <ion-card-content>
         {{complaint.content}}
+        <br>
+        {{complaint.created | date:'fullDate'}}
       </ion-card-content>
       <ion-item>
         <ion-icon name="pin" slot="start"></ion-icon>
