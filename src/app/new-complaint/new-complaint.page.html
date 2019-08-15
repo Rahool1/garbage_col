@@ -6,36 +6,40 @@
     <ion-title>
       Register Complaint
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/complaints"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form #form="ngForm" (ngSubmit)="registerEnquiry(form)">
-  <ion-list>
-    <ion-item>
-      <ion-label>Select Ward</ion-label>
-      <ion-select ngModel name="ward_id" value="brown" okText="Okay" cancelText="Dismiss" required>
-        <ion-select-option name="ward_id" *ngFor="let ward of wards" [value]="ward.id">{{ward.name}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>Select Ward</ion-label>
+        <ion-select ngModel name="ward_id" value="brown" okText="Okay" cancelText="Dismiss" required>
+          <ion-select-option name="ward_id" *ngFor="let ward of wards" [value]="ward.id">{{ward.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
         <ion-label position="floating">Title</ion-label>
         <ion-input ngModel type="text" name="title" required></ion-input>
       </ion-item>
-    <ion-item>
-      <ion-label position="floating">Address</ion-label>
-      <ion-textarea ngModel name="address" required></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Description</ion-label>
-      <ion-textarea ngModel name="content" required></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Mobile Number</ion-label>
-      <ion-input ngModel type="text" name="mobile_no" pattern="^(\+91[\-\s]?)?[0]?[1789]\d{9}$" required></ion-input>
-    </ion-item>
-  </ion-list>
-  <div padding>
+      <ion-item>
+        <ion-label position="floating">Address</ion-label>
+        <ion-textarea ngModel name="address" required></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea ngModel name="content" required></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Mobile Number</ion-label>
+        <ion-input ngModel type="text" name="mobile_no" pattern="^(\+91[\-\s]?)?[0]?[1789]\d{9}$" required></ion-input>
+      </ion-item>
+    </ion-list>
+    <div padding>
       <ion-img expand="block" [src]="this.base64Image"></ion-img>
       <ion-button size="large" (click)="capturePhoto(form)" expand="block">Select Photo</ion-button>
       <ion-button size="large" [disabled]="form.invalid" expand="block" type="submit">Submit</ion-button>

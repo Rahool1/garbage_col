@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
     this.authService.is_user_login().subscribe((res: any) => {
       if (res.status) {
         localStorage.setItem("user", JSON.stringify(res.user));
-        this.router.navigate(['complaints'], {skipLocationChange: true});
+        this.router.navigate(['complaints'], {skipLocationChange: true, replaceUrl: true});
       }
     });
   }
@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
     this.authService.login(form.value).subscribe((res: any) => {
       if (res.status) {
         localStorage.setItem("user", JSON.stringify(res.user));
-        this.router.navigate(['complaints'], {skipLocationChange: true});
+        this.router.navigate(['complaints'], {skipLocationChange: true, replaceUrl: true});
       } else {
         this.presentAlert(res.validation);
       }

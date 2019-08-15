@@ -6,6 +6,9 @@
     <ion-title>
       Complaint
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/complaints"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -43,8 +46,10 @@
       <div style="height: 400px;width: 100%" id="map_canvas"> </div>
     </ion-item>
     <div padding>
-      <ion-button size="large" expand="block" (click)="inprogress()" *ngIf="user.group == 'ADMIN' || user.group == 'SUPERVISOR'">In Progress</ion-button>
-      <ion-button size="large" expand="block" (click)="gotoResolve()" *ngIf="user.group == 'ADMIN' || user.group == 'SUPERVISOR'">Change Status</ion-button>
+      <ion-button size="large" expand="block" (click)="inprogress()"
+        *ngIf="user.group == 'ADMIN' || user.group == 'SUPERVISOR'">In Progress</ion-button>
+      <ion-button size="large" expand="block" (click)="gotoResolve()"
+        *ngIf="user.group == 'ADMIN' || user.group == 'SUPERVISOR'">Change Status</ion-button>
     </div>
   </ion-list>
 </ion-content>

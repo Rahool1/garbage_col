@@ -35,7 +35,7 @@ export class NewComplaintPage implements OnInit {
           text: 'OK',
           handler: () => {
             alert.dismiss().then(() => {
-              this.router.navigate(['complaints'], {skipLocationChange: true});
+              this.router.navigate(['complaints'], {skipLocationChange: true, replaceUrl: true});
             });
             return false;
           }

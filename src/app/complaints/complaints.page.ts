@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NetworkService } from '../services/network.service';
 import { environment } from 'src/environments/environment';
 import { ActionSheetController } from '@ionic/angular';
+import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-complaints',
@@ -18,6 +19,7 @@ export class ComplaintsPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private networkService: NetworkService,
+    private authService: AuthServiceService,
     public actionSheetController: ActionSheetController
   ) {
     this.route.queryParams.subscribe(params => {
@@ -28,28 +30,28 @@ export class ComplaintsPage implements OnInit {
       }
     });
   }
-
+  
   ngOnInit() {
+    this.user = this.authService.getUser()
     this.getComplaints('0');
   }
 
 
   getComplaints(status) {
-    this.user = JSON.parse(localStorage.getItem("user"));
     var data = {
       // date: (new Date(this.selectedDate)).getTime(),
       group: this.user.group,
       status: Number(status)
     };
     this.networkService.getComplaints(data)
-    .subscribe((complaints) => {
-      this.complaints = complaints['data'];
-    });
+      .subscribe((complaints) => {
+        this.complaints = complaints['data'];
+      });
   }
   viewComplaint(complaint) {
-    complaint['location_picture'] = environment.SERVER_ADDRESS+'/'+complaint.location_pic;
+    complaint['location_picture'] = environment.SERVER_ADDRESS + '/' + complaint.location_pic;
     this.networkService.vComplaint = complaint;
-    this.router.navigate(['complaint'], {skipLocationChange: true});
+    this.router.navigate(['complaint'], { skipLocationChange: true, replaceUrl: true });
   }
 
   async presentActionSheet() {
@@ -83,10 +85,11 @@ export class ComplaintsPage implements OnInit {
     const navigationExtras: NavigationExtras = {
       queryParams: {
         status: this.id
-      }
+      },
+      skipLocationChange: true,
+      replaceUrl: true
     };
     this.router.navigate(['complaints'], navigationExtras);
-    // this.getComplaints(0);
   }
 
 }

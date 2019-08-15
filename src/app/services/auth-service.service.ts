@@ -6,11 +6,14 @@ import { environment } from './../../environments/environment';
   providedIn: 'root'
 })
 export class AuthServiceService {
-
+  
   constructor(
     private httpClient: HttpClient
   ) { }
 
+  getUser() {
+    return JSON.parse(localStorage.getItem('user'));
+  }
 
   register(user) {
     return this.httpClient.post(`${environment.SERVER_ADDRESS}/user/register/`, user);

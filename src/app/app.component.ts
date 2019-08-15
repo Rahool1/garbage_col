@@ -24,8 +24,7 @@ export class AppComponent implements OnInit {
     }
   ];
   user;
-  lastTimeBackPress = 0;
-  timePeriodToExit = 2000;
+  counter = 0;
 
   constructor(
     private platform: Platform,
@@ -35,63 +34,71 @@ export class AppComponent implements OnInit {
     private authService: AuthServiceService,
     public menuCtrl: MenuController,
     public navCtrl: NavController,
-    private toast: ToastController
+    private alertController: ToastController
   ) {
     this.initializeApp();
   }
 
-  ngOnInit(){
-    this.user = JSON.parse(localStorage.getItem('user'));
-    if(this.user && this.user.group != 'CUSTOMER') {
+  ngOnInit() {
+    this.user = this.authService.getUser();
+    if (this.user && this.user.group != 'CUSTOMER') {
       this.appPages.splice(1, 1);
     }
   }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      message: "Press again to exit",
+      duration: 3000
+    });
+    await alert.present();
+  }
+
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.platform.backButton.subscribe(() => {
-        console.log(this.router.url);
-        if(this.router.url.includes('complaints') || this.router.url.includes('/login') || this.router.url.includes('new-complaint')) {
-          if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
-            navigator['app'].exitApp();
-          } else {
-            this.lastTimeBackPress = new Date().getTime();
-          }
+      this.platform.backButton.subscribe((res) => {
+        if (this.counter == 0) {
+          this.counter++;
+          this.presentAlert();
+          setTimeout(() => { this.counter = 0 }, 3000)
+        } else {
+          navigator['app'].exitApp();
         }
       });
     });
-    if (localStorage.getItem('user')) {
+    if (this.user) {
       const navigationExtras: NavigationExtras = {
         queryParams: {
           status: 0
         },
-        skipLocationChange: true
+        skipLocationChange: true,
+        replaceUrl: true
       };
-      console.log(navigationExtras);
       this.router.navigate(['complaints'], navigationExtras);
     } else {
-      this.router.navigate(['login'], {skipLocationChange: true});
+      this.router.navigate(['login'], { skipLocationChange: true, replaceUrl: true });
     }
   }
   logoutClicked() {
     this.authService.logout()
-    .subscribe((res: Response) => {
-      if (res.status) {
-        this.menuCtrl.toggle();
-        localStorage.removeItem("user");
-        this.router.navigate(['login'], {skipLocationChange: true});
-      }
-    });
+      .subscribe((res: Response) => {
+        if (res.status) {
+          this.menuCtrl.toggle();
+          localStorage.removeItem('user');
+          this.router.navigate(['login'], { skipLocationChange: true, replaceUrl: true });
+        }
+      });
   }
   status(comp, id) {
-    console.log(id);
     let navigationExtras: NavigationExtras = {
       queryParams: {
         status: id
       },
-      skipLocationChange: true
+      skipLocationChange: true,
+      replaceUrl: true
     };
     console.log(navigationExtras);
     this.router.navigate(['complaints'], navigationExtras);
