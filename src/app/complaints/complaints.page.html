@@ -33,8 +33,7 @@
         {{complaint.created | date:'fullDate'}}
       </ion-card-content>
       <ion-item>
-        <ion-icon name="pin" slot="start"></ion-icon>
-        <ion-label>{{complaint.ward.name}}, {{complaint.ward.city.name}}</ion-label>
+        <ion-label>{{complaint.sub_ward.name}}, {{complaint.sub_ward.ward.name}},  {{complaint.sub_ward.ward.city.name}}</ion-label>
         <ion-button fill="outline" slot="end" (click)="viewComplaint(complaint)">View</ion-button>
       </ion-item>
     </ion-card>

@@ -15,10 +15,6 @@ import { HttpAuthInterceptor } from './services/http.interceptor';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {
   GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  Marker,
-  BaseArrayClass
 } from '@ionic-native/google-maps';
 
 

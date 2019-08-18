@@ -17,8 +17,15 @@
     <ion-list>
       <ion-item>
         <ion-label>Select Ward</ion-label>
-        <ion-select ngModel name="ward_id" value="brown" okText="Okay" cancelText="Dismiss" required>
+        <ion-select ngModel (ionChange)="getSubWards($event)" name="ward_id" value="brown" okText="Okay" cancelText="Dismiss" required>
           <ion-select-option name="ward_id" *ngFor="let ward of wards" [value]="ward.id">{{ward.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Select Sub Ward</ion-label>
+        <ion-select ngModel name="sub_ward_id" value="brown" okText="Okay" cancelText="Dismiss" required>
+          <ion-select-option name="sub_ward_id" *ngFor="let ward of subWards" [value]="ward.id">{{ward.name}}
           </ion-select-option>
         </ion-select>
       </ion-item>

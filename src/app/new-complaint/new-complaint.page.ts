@@ -13,6 +13,7 @@
 export class NewComplaintPage implements OnInit {
 
   wards = [];
+  subWards = [];
   base64Image = "assets/img/200.png";
 
   constructor(
@@ -48,6 +49,13 @@ export class NewComplaintPage implements OnInit {
       this.networkService.getWards()
       .subscribe((wards => {
         this.wards = wards['data'];
+      }));
+    }
+    
+    getSubWards(event) {
+      this.networkService.getSubWards({id: event.detail.value})
+      .subscribe((wards => {
+        this.subWards = wards['data'];
       }));
     }
 

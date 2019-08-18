@@ -13,7 +13,7 @@ export class NetworkService {
   getUserDetails() {
     try{
       return JSON.parse(localStorage.getItem("user"));
-    } catch(e) {
+    } catch(e) {  
       console.log(e);
     }
   }
@@ -28,6 +28,10 @@ export class NetworkService {
 
   getWards() {
     return this.httpClient.get(`${environment.SERVER_ADDRESS}/get/active/wards/`);
+  }
+  
+  getSubWards(data) {
+    return this.httpClient.post(`${environment.SERVER_ADDRESS}/get/sub/wards/`, data);
   }
 
   changeComplaintStatus(complaint) {

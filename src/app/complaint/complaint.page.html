@@ -15,8 +15,12 @@
 <ion-content>
   <ion-list>
     <ion-item>
+      <ion-label position="fixed">Sub Ward</ion-label>
+      <ion-input>{{complaint.sub_ward.name}}</ion-input>
+    </ion-item>
+    <ion-item>
       <ion-label position="fixed">Ward</ion-label>
-      <ion-input>{{complaint.ward.name}}</ion-input>
+      <ion-input>{{complaint.sub_ward.ward.name}}</ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="fixed">Title</ion-label>

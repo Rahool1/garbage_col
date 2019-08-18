@@ -7,7 +7,7 @@ const HOSTNAME = '192.168.1.104';
 export const environment = {
   production: false,
   // SERVER_ADDRESS: `http://${HOSTNAME}:1992`
-  SERVER_ADDRESS: `http://optiex.webfactional.com`
+  SERVER_ADDRESS: `http://localhost:1992`
 };
 
 /*

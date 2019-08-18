@@ -12,11 +12,6 @@ import { AuthServiceService } from './services/auth-service.service';
 })
 export class AppComponent implements OnInit {
   public appPages = [
-    // {
-    //   title: 'Complaints',
-    //   url: '/complaints?status=0',
-    //   icon: 'list'
-    // },
     {
       title: 'Add Complaints',
       url: '/new-complaint',
