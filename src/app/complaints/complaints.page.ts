@@ -80,16 +80,4 @@ export class ComplaintsPage implements OnInit {
     });
     await actionSheet.present();
   }
-
-  refresh() {
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        status: this.id
-      },
-      skipLocationChange: true,
-      replaceUrl: true
-    };
-    this.router.navigate(['complaints'], navigationExtras);
-  }
-
 }
