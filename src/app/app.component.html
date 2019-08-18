@@ -3,7 +3,7 @@
     <ion-menu>
       <ion-header>
         <ion-toolbar>
-          <ion-title>{{user?.first_name + ' ' + user?.last_name}}</ion-title>
+          <ion-title>{{user?.first_name + ' ' + user?.last_name}}({{user.group}})</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
@@ -29,7 +29,7 @@
                 Completed
               </ion-label>
             </ion-item>
-            <ion-item (click)="status('ComplaintsPage', 2)">
+            <ion-item  (click)="status('ComplaintsPage', 2)">
               <ion-icon slot="start" name="close-circle"></ion-icon>
               <ion-label>
                 Rejected

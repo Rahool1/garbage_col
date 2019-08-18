@@ -40,7 +40,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.authService.getUser();
+    this.authService.user.subscribe(user=>{
+      this.user = user;
+    })
     if (this.user && this.user.group != 'CUSTOMER') {
       this.appPages.splice(1, 1);
     }

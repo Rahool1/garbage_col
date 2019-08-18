@@ -18,8 +18,7 @@ export class HttpAuthInterceptor implements HttpInterceptor {
 
   async presentLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Please wait...',
-      duration: 10
+      message: 'Please wait...'
     });
     await this.loading.present();
   }
@@ -33,7 +32,7 @@ export class HttpAuthInterceptor implements HttpInterceptor {
     });
     this.presentLoading();
     return next.handle(request).pipe(
-      finalize(() =>  this.loading.onDidDismiss())
+      finalize(() =>  this.loading.dismiss())
   );
   }
 }
