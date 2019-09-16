@@ -60,6 +60,7 @@ export class NewComplaintPage implements OnInit {
     }
 
     getGeolocationPoints(enquiry){
+      delete enquiry.value['ward_id'];
       this.geolocation.getCurrentPosition().then((resp) => {
 
         enquiry.value.lat = resp.coords.latitude;
@@ -77,7 +78,6 @@ export class NewComplaintPage implements OnInit {
         console.log('Error getting location', error);
         enquiry.value.lat = 0;
         enquiry.value.lang = 0;
-
         this.networkService.registerComplaint(enquiry.value)
         .subscribe((res: any) => {
           if (res.status){
