@@ -5,42 +5,39 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router, NavigationExtras } from '@angular/router';
 import { AuthServiceService } from './services/auth-service.service';
+import { NetworkService } from './services/network.service';
+import { LanguageService } from './services/language.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
-  public appPages = [
-    {
-      title: 'Add Complaints',
-      url: '/new-complaint',
-      icon: 'clipboard'
-    }
-  ];
   user;
   counter = 0;
-
+  languages = [{ "status": 'en', "name": "English" }, { "status": 'mr', "name": "Marathi" }]
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
     private authService: AuthServiceService,
+    private networkService: NetworkService,
     public menuCtrl: MenuController,
     public navCtrl: NavController,
-    private alertController: ToastController
+    private alertController: ToastController,
+    private languageService: LanguageService
   ) {
     this.initializeApp();
   }
+  
 
   ngOnInit() {
-    this.authService.user.subscribe(user=>{
+    this.authService.user.subscribe(user => {
       this.user = user;
     })
-    if (this.user && this.user.group != 'CUSTOMER') {
-      this.appPages.splice(1, 1);
-    }
+    this.languageService._initTranslate();
   }
 
   async presentAlert() {
@@ -79,6 +76,7 @@ export class AppComponent implements OnInit {
       this.router.navigate(['login'], { skipLocationChange: true, replaceUrl: true });
     }
   }
+
   logoutClicked() {
     this.authService.logout()
       .subscribe((res: Response) => {
@@ -89,6 +87,7 @@ export class AppComponent implements OnInit {
         }
       });
   }
+
   status(comp, id) {
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -99,6 +98,17 @@ export class AppComponent implements OnInit {
     };
     console.log(navigationExtras);
     this.router.navigate(['complaints'], navigationExtras);
+  }
+
+  updateLanguage(evt) {
+    console.log(evt.target.value)
+    this.networkService.updateLanguage({"language": evt.target.value})
+    .subscribe((res: Response)=>{
+      if (res.status){
+        console.log("Language changed")
+        this.languageService._translateLanguage(evt.target.value);
+      }
+    })
   }
 
 }

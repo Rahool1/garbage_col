@@ -4,6 +4,7 @@
  import { AlertController } from '@ionic/angular';
  import { Geolocation } from '@ionic-native/geolocation/ngx';
  import { Router } from '@angular/router';
+import { LanguageService } from '../services/language.service';
 
  @Component({
   selector: 'app-new-complaint',
@@ -21,7 +22,8 @@ export class NewComplaintPage implements OnInit {
     private camera: Camera,
     public alertController: AlertController,
     private geolocation: Geolocation,
-    private router: Router
+    private router: Router,
+    public languageService: LanguageService
     ) { }
 
     ngOnInit() {

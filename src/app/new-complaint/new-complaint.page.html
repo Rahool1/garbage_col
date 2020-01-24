@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Register Complaint
+      {{languageService.langVariables.register_complaint}}
     </ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="/complaints"></ion-back-button>
@@ -16,33 +16,33 @@
   <form #form="ngForm" (ngSubmit)="registerEnquiry(form)">
     <ion-list>
       <ion-item>
-        <ion-label>Select Ward</ion-label>
+        <ion-label>{{languageService.langVariables.select_ward}}</ion-label>
         <ion-select ngModel (ionChange)="getSubWards($event)" name="ward_id" value="brown" okText="Okay" cancelText="Dismiss" required>
           <ion-select-option name="ward_id" *ngFor="let ward of wards" [value]="ward.id">{{ward.name}}
           </ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label>Select Sub Ward</ion-label>
+        <ion-label>{{languageService.langVariables.select_sub_ward}}</ion-label>
         <ion-select ngModel name="sub_ward_id" value="brown" okText="Okay" cancelText="Dismiss" required>
           <ion-select-option name="sub_ward_id" *ngFor="let ward of subWards" [value]="ward.id">{{ward.name}}
           </ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Title</ion-label>
+        <ion-label position="floating">{{languageService.langVariables.title}}</ion-label>
         <ion-input ngModel type="text" name="title" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Address</ion-label>
+        <ion-label position="floating">{{languageService.langVariables.address}}</ion-label>
         <ion-textarea ngModel name="address" required></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Description</ion-label>
+        <ion-label position="floating">{{languageService.langVariables.description}}</ion-label>
         <ion-textarea ngModel name="content" required></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Mobile Number</ion-label>
+        <ion-label position="floating">{{languageService.langVariables.mobile_no}}</ion-label>
         <ion-input ngModel type="text" name="mobile_no" pattern="^(\+91[\-\s]?)?[0]?[1789]\d{9}$" required></ion-input>
       </ion-item>
     </ion-list>

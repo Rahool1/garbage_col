@@ -18,7 +18,8 @@ export class HttpAuthInterceptor implements HttpInterceptor {
 
   async presentLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Please wait...'
+      message: 'Please wait...',
+      duration: 3000,
     });
     await this.loading.present();
   }

@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Complaints
+      {{languageService.langVariables.complaint}}
     </ion-title>
     <ion-buttons (click)="getComplaints()" slot="end">
       <ion-icon style="font-size: 1.5em;" name="refresh"></ion-icon>
@@ -14,10 +14,10 @@
 
 <ion-content>
   <ion-item *ngIf="complaints?.length < 1">
-    <ion-label>No records found</ion-label>
+    <ion-label>{{languageService.langVariables.no_record_found}}</ion-label>
   </ion-item>
   <div *ngIf="complaints.length > 0">
-    <ion-card class="new-complaint" *ngFor="let complaint of complaints">
+    <ion-card *ngFor="let complaint of complaints" [ngClass]="(complaint.status_id==3) ? 'new-complaint': (complaint.status_id==1) ? 'completed-complaint': (complaint.status_id==4) ? 'inprogress-complaint': 'rejected-complaint'">
       <ion-card-header>
         <ion-card-subtitle>
           {{complaint.user.first_name}} {{complaint.user.mobile_no}}

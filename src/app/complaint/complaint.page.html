@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Complaint
+      {{languageService.langVariables.complaint}}
     </ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="/complaints"></ion-back-button>
@@ -15,31 +15,31 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label position="fixed">Sub Ward</ion-label>
+      <ion-label position="fixed">{{languageService.langVariables.sub_ward}}</ion-label>
       <ion-input>{{complaint.sub_ward.name}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="fixed">Ward</ion-label>
+      <ion-label position="fixed">{{languageService.langVariables.ward}}</ion-label>
       <ion-input>{{complaint.sub_ward.ward.name}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="fixed">Title</ion-label>
+      <ion-label position="fixed">{{languageService.langVariables.title}}</ion-label>
       <ion-input>{{complaint.title}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="fixed">Address</ion-label>
+      <ion-label position="fixed">{{languageService.langVariables.address}}</ion-label>
       <ion-input>{{complaint.address}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="fixed">Description</ion-label>
+      <ion-label position="fixed">{{languageService.langVariables.description}}</ion-label>
       <ion-input>{{complaint.content}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="fixed">Mobile No.</ion-label>
+      <ion-label position="fixed">{{languageService.langVariables.mobile_no}}</ion-label>
       <ion-input>{{complaint.mobile_no}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="fixed">Status</ion-label>
+      <ion-label position="fixed">{{languageService.langVariables.status}}</ion-label>
       <ion-input>{{complaint.status}}</ion-input>
     </ion-item>
     <ion-item>
@@ -51,7 +51,8 @@
     </ion-item>
     <div padding>
       <ion-button size="large" expand="block" (click)="inprogress()"
-        *ngIf="user.group == 'ADMIN' || user.group == 'SUPERVISOR'">In Progress</ion-button>
+        *ngIf="user.group == 'ADMIN' || user.group == 'SUPERVISOR'">{{languageService.langVariables.inprogress}}
+      </ion-button>
       <ion-button size="large" expand="block" (click)="gotoResolve()"
         *ngIf="user.group == 'ADMIN' || user.group == 'SUPERVISOR'">Change Status</ion-button>
     </div>

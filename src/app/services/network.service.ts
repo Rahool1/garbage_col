@@ -8,6 +8,7 @@ import { environment } from './../../environments/environment';
 export class NetworkService {
 
   vComplaint = {};
+
   constructor(private httpClient: HttpClient) { }
 
   getUserDetails() {
@@ -44,6 +45,10 @@ export class NetworkService {
   
   changePassword(data) {
     return this.httpClient.post(`${environment.SERVER_ADDRESS}/user/forgot/password/`, data)
+  }
+  
+  updateLanguage(data) {
+    return this.httpClient.post(`${environment.SERVER_ADDRESS}/update/language/`, data)
   }
 
 }

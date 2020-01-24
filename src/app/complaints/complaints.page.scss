@@ -1,3 +1,15 @@
 .new-complaint{
+    border-left: 3px solid royalblue;
+}
+
+.rejected-complaint{
     border-left: 3px solid red;
+}
+
+.completed-complaint{
+    border-left: 3px solid green;
+}
+
+.inprogress-complaint{
+    border-left: 3px solid orange;
 }

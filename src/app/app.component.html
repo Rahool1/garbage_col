@@ -3,43 +3,52 @@
     <ion-menu>
       <ion-header>
         <ion-toolbar>
-          <ion-title>{{user?.first_name + ' ' + user?.last_name}}({{user.group}})</ion-title>
+          <ion-title>{{user?.first_name + ' ' + user?.last_name}}({{languageService.langVariables[user?.group]}})</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [routerDirection]="'root'" [routerLink]="'/new-complaint'">
+              <ion-icon slot="start" [name]="'clipboard'"></ion-icon>
               <ion-label>
-                {{p.title}}
+                {{languageService.langVariables.add_complaint}}
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false">
-            <ion-item (click)="status('ComplaintsPage', 0)">
+            <ion-item (click)="status('ComplaintsPage', 4)">
               <ion-icon slot="start" name="clock"></ion-icon>
               <ion-label>
-                Inprogress
+                {{languageService.langVariables.inprogress}}
               </ion-label>
             </ion-item>
             <ion-item (click)="status('ComplaintsPage', 1)">
               <ion-icon slot="start" name="checkmark-circle"></ion-icon>
               <ion-label>
-                Completed
-              </ion-label>
-            </ion-item>
-            <ion-item  (click)="status('ComplaintsPage', 2)">
-              <ion-icon slot="start" name="close-circle"></ion-icon>
-              <ion-label>
-                Rejected
+                  {{languageService.langVariables.completed}}
+                </ion-label>
+              </ion-item>
+              <ion-item (click)="status('ComplaintsPage', 2)">
+                <ion-icon slot="start" name="close-circle"></ion-icon>
+                <ion-label>
+                    {{languageService.langVariables.rejected}}
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-item>
+            <ion-icon slot="start" name="log-out"></ion-icon>
+            <ion-label>{{languageService.langVariables.select_language}}</ion-label>
+            <ion-select ngModel (ionChange)="updateLanguage($event)" name="lang_id" [value]="user?.language" okText="Okay"
+              cancelText="Dismiss" required>
+              <ion-select-option name="lang_id" *ngFor="let lang of languages" [value]="lang.status">{{lang.name}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
           <ion-item (click)="logoutClicked()">
             <ion-icon slot="start" name="log-out"></ion-icon>
             <ion-label>
-              Logout
+              {{languageService.langVariables.logout}}
             </ion-label>
           </ion-item>
         </ion-list>

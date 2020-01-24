@@ -10,6 +10,7 @@ import {
 } from '@ionic-native/google-maps';
 import { Router } from '@angular/router';
 import { Platform, AlertController } from "@ionic/angular";
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-complaint',
@@ -27,6 +28,7 @@ export class ComplaintPage implements OnInit {
     private platform: Platform,
     private router: Router,
     private alertController: AlertController,
+    public languageService: LanguageService
   ) {
     this.complaint = this.networkService.vComplaint;
     this.user = this.networkService.getUserDetails();
@@ -59,7 +61,7 @@ export class ComplaintPage implements OnInit {
   inprogress() {
     let obj = {
       id: this.complaint.id,
-      status_id: 0
+      status_id: 4
     };
     this.networkService.changeComplaintStatus(obj)
       .subscribe((res: any) => {

@@ -1,0 +1,23 @@
+{
+  "complaint": "Complaints",
+  "add_complaint": "Add Complaints",
+  "inprogress": "Inprogress",
+  "completed": "Completed",
+  "rejected": "Rejected",
+  "select_language": "Select Language",
+  "logout": "Logout",
+  "supervisor": "SUPERVISOR",
+  "no_record_found": "No Record Found",
+  "register_complaint": "Register Complaint",
+  "select_ward": "Select Ward",
+  "select_sub_ward": "Select Sub Ward",
+  "title": "Title",
+  "address": "Address",
+  "description": "Description",
+  "mobile_no": "Mobile Number",
+  "ward": "ward",
+  "sub_ward": "Sub Ward",
+  "status": "Status",
+  "customer": "CUSTOMER",
+  "admin": "ADMIN"
+}

@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log("login ngoninit")
     this.is_user_login();
   }
 

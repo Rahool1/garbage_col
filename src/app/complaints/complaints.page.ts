@@ -4,6 +4,7 @@ import { NetworkService } from '../services/network.service';
 import { environment } from 'src/environments/environment';
 import { ActionSheetController } from '@ionic/angular';
 import { AuthServiceService } from '../services/auth-service.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-complaints',
@@ -20,11 +21,11 @@ export class ComplaintsPage implements OnInit {
     private route: ActivatedRoute,
     private networkService: NetworkService,
     private authService: AuthServiceService,
-    public actionSheetController: ActionSheetController
+    public actionSheetController: ActionSheetController,
+    public languageService: LanguageService
   ) {
     this.route.queryParams.subscribe(params => {
       if (params && params.status) {
-        console.log(params);
         this.id = params.status;
         this.getComplaints(params.status);
       }
@@ -33,7 +34,7 @@ export class ComplaintsPage implements OnInit {
   
   ngOnInit() {
     this.user = this.authService.getUser()
-    this.getComplaints('0');
+    this.getComplaints('4');
   }
 
 
@@ -41,7 +42,7 @@ export class ComplaintsPage implements OnInit {
     var data = {
       // date: (new Date(this.selectedDate)).getTime(),
       group: this.user.group,
-      status: Number(status)
+      status: this.id != undefined ? Number(this.id): Number(status)
     };
     this.networkService.getComplaints(data)
       .subscribe((complaints) => {

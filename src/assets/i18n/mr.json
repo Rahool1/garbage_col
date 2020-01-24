@@ -1,0 +1,23 @@
+{
+  "complaint": "तक्रार",
+  "add_complaint": "तक्रारी जोडा",
+  "inprogress": "प्रगतीपथावर",
+  "completed": "पूर्ण",
+  "rejected": "नाकारले",
+  "select_language": "भाषा निवडा",
+  "logout": "बाहेर पडणे",
+  "supervisor": "पर्यवेक्षक",
+  "no_record_found": "रेकॉर्ड सापडला नाही",
+  "register_complaint": "तक्रार नोंदवा",
+  "select_ward": "वॉर्ड निवडा",
+  "select_sub_ward": "सबवॉर्ड निवडा",
+  "title": "शीर्षक",
+  "address": "पत्ता",
+  "description": "वर्णन",
+  "mobile_no": "मोबाइल नंबर",
+  "ward": "वॉर्ड",
+  "sub_ward": "सबवॉर्ड",
+  "status": "स्थिती",
+  "customer": "ग्राहक",
+  "admin": "प्रशासक"
+}
