@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../services/auth-service.service';
 import { AlertController } from '@ionic/angular';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +10,13 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  languages = [{ "status": 'en', "name": "English" }, { "status": 'mr', "name": "Marathi" }]
 
   constructor(
     private authService: AuthServiceService,
     private router: Router,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private languageService: LanguageService
   ) { }
 
   ngOnInit() {

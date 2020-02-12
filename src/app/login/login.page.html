@@ -13,6 +13,14 @@
             <ion-item>
               <ion-input name="password" type="password" placeholder="Password" ngModel required value=""></ion-input>
             </ion-item>
+            <ion-item>
+            <ion-label>{{languageService.langVariables.select_language}}</ion-label>
+            <ion-select ngModel name="language" [value]="user?.language"
+              okText="Okay" cancelText="Dismiss" required>
+              <ion-select-option name="lang_id" *ngFor="let lang of languages" [value]="lang.status">{{lang.name}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
           </div>
           <div padding>
             <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Login</ion-button>
